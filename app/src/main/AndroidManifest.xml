@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Horoscapp_am"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.home.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
