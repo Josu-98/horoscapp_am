@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id ("kotlin-kapt")
+    id ("dagger.hilt.android.plugin")
+
 }
 
 android {
@@ -41,6 +44,9 @@ android {
 }
 
 dependencies {
+
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt ("com.google.dagger:hilt-compiler:2.51.1")
 
     //Nav version variable to keep consistency between versions
     val navVersion: String = "2.7.7"
