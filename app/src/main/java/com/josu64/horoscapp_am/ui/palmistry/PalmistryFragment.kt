@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import com.josu64.horoscapp_am.R
 import com.josu64.horoscapp_am.databinding.FragmentLuckBinding
 import com.josu64.horoscapp_am.databinding.FragmentPalmistryBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 //The best way to do this is configuring the parent 'Fragment' class so as to not have to configure fragments multiple times
+@AndroidEntryPoint
 class PalmistryFragment : Fragment() {
 
     private var _binding: FragmentPalmistryBinding? = null

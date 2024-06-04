@@ -41,6 +41,11 @@ android {
         viewBinding = true
     }
 
+    //JVM to version 8 (For some reason it crashes the compilation)
+//    kotlin{
+//        jvmToolchain(8)
+//    }
+
 }
 
 dependencies {
