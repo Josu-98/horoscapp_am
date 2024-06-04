@@ -18,7 +18,10 @@ class HoroscopeViewModel @Inject constructor() : ViewModel() {
     //the init method is called when a viewModel is created
     init {
         _horoscope.value = listOf(
-            Aries, Taurus, Gemini
+            Aries, Taurus, Gemini,
+            Aries, Taurus, Gemini,
+            Aries, Taurus, Gemini,
+            Aries, Taurus, Gemini,
         )
     }
 }

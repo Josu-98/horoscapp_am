@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle.State.*
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.josu64.horoscapp_am.databinding.FragmentHoroscopeBinding
 import com.josu64.horoscapp_am.ui.horoscope.adapter.HoroscopeAdapter
@@ -44,7 +45,8 @@ class HoroscopeFragment : Fragment() {
 
         //On creation of the view, apply the following
         binding.rvHoroscope.apply {
-            layoutManager = LinearLayoutManager(context)
+//            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context, 3)
             adapter = horoscopeAdapter
         }
 
@@ -57,8 +59,8 @@ class HoroscopeFragment : Fragment() {
             repeatOnLifecycle(STARTED){
                 //Subscribe to the view model
                 horoscopeViewModel.horoscope.collect(){
-                    //Whenever the value in the View Model changes, the view will update it
-                    Log.i("Horoscope Fragment", it.toString())
+                    //Whenever the value in the View Model changes, the following will run
+                    horoscopeAdapter.updateList(it) //It is the new list
                 }
             }
         }
