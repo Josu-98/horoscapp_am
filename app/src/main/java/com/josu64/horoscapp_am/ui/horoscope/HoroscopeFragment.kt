@@ -1,22 +1,68 @@
 package com.josu64.horoscapp_am.ui.horoscope
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle.State.*
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.josu64.horoscapp_am.databinding.FragmentHoroscopeBinding
+import com.josu64.horoscapp_am.ui.horoscope.adapter.HoroscopeAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HoroscopeFragment : Fragment() {
 
     //Connect fragment to view model using a singleton(?)-ish structure
     private val horoscopeViewModel by viewModels<HoroscopeViewModel>()
+    private lateinit var horoscopeAdapter: HoroscopeAdapter
 
     private var _binding: FragmentHoroscopeBinding? = null
     private val binding get() = _binding!! //Getter for binding
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initUI()
+
+    }
+
+    private fun initUI() {
+        initUIState()
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView() {
+        horoscopeAdapter = HoroscopeAdapter() //Needs a list, but we already initialized it with an empty list
+
+        //On creation of the view, apply the following
+        binding.rvHoroscope.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = horoscopeAdapter
+        }
+
+    }
+
+    private fun initUIState() {
+        //This coroutine is linked to the fragments life cycle. If the fragment goes, so does the coroutine
+        lifecycleScope.launch {
+            //When the fragment's lifecycle starts
+            repeatOnLifecycle(STARTED){
+                //Subscribe to the view model
+                horoscopeViewModel.horoscope.collect(){
+                    //Whenever the value in the View Model changes, the view will update it
+                    Log.i("Horoscope Fragment", it.toString())
+                }
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
