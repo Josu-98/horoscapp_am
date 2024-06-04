@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.josu64.horoscapp_am.databinding.FragmentHoroscopeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HoroscopeFragment : Fragment() {
+
+    //Connect fragment to view model using a singleton(?)-ish structure
+    private val horoscopeViewModel by viewModels<HoroscopeViewModel>()
 
     private var _binding: FragmentHoroscopeBinding? = null
     private val binding get() = _binding!! //Getter for binding
