@@ -4,7 +4,10 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginHorizontal="8sp">
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginTop="-26dp"
+    android:id="@+id/clParent"
+    >
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivHoroscope"
@@ -24,10 +27,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivHoroscope"
         android:fontFamily="@font/supreme_regular"
-        android:textSize="28sp"
+        android:textSize="24sp"
         android:textColor="@color/secondary"
         android:layout_marginTop="-55dp"
-        android:text="Aries"
+        tools:text="Aries"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
