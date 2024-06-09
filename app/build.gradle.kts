@@ -23,12 +23,21 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            resValue("string", "appName", "HoroscApp")
+            buildConfigField("String", "BASE_URL", "\"https://newastro.vercel.app/\"")
+        }
+
+        getByName("debug") {
+            buildConfigField("String", "BASE_URL", "\"https://newastro-debug.vercel.app/\"")
+            resValue("string", "appName", "[DEBUG] HoroscApp")
+            isDebuggable = true
         }
     }
     compileOptions {
@@ -40,7 +49,10 @@ android {
     }
     //Enable view binding
     buildFeatures{
+        //Activate viewBinding
         viewBinding = true
+        //Activate buildConfig
+        buildConfig = true
     }
 
     //JVM to version 8 (For some reason it crashes the compilation)
