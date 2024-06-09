@@ -1,9 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    //Dagger Hilt
     id ("kotlin-kapt")
     id ("dagger.hilt.android.plugin")
-
+    //SafeArgs
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -50,6 +52,12 @@ android {
 
 dependencies {
 
+    //SafeArgs (unnecessary, apparently)
+    // https://mvnrepository.com/artifact/androidx.navigation.safeargs/androidx.navigation.safeargs.gradle.plugin
+    //implementation("androidx.navigation.safeargs:androidx.navigation.safeargs.gradle.plugin:2.7.7")
+
+
+    //Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt ("com.google.dagger:hilt-compiler:2.51.1")
 
