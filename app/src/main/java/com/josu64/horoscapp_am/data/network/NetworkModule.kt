@@ -1,11 +1,14 @@
 package com.josu64.horoscapp_am.data.network
 
 import com.josu64.horoscapp_am.data.RepositoryImpl
+import com.josu64.horoscapp_am.data.core.interceptors.AuthInterceptor
 import com.josu64.horoscapp_am.domain.Repository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -16,11 +19,25 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit
             .Builder()
             .baseUrl("https://newastro.vercel.app/")
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(authInterceptor: AuthInterceptor):OkHttpClient{
+        //Interceptors let us see the hidden information of an API call
+        val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+
+        return OkHttpClient
+            .Builder()
+            .addInterceptor(interceptor)
+            .addInterceptor(authInterceptor)
             .build()
     }
 
