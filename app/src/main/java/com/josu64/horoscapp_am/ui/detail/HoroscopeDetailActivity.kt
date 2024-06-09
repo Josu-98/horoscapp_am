@@ -6,12 +6,18 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavArgs
 import androidx.navigation.navArgs
 import com.josu64.horoscapp_am.R
 import com.josu64.horoscapp_am.databinding.ActivityHoroscopeDetailBinding
 import com.josu64.horoscapp_am.ui.horoscope.HoroscopeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HoroscopeDetailActivity : AppCompatActivity() {
@@ -33,7 +39,38 @@ class HoroscopeDetailActivity : AppCompatActivity() {
             insets
         }
 
-        args.horoscopeType
+        initUI()
 
     }
+
+    private fun initUI() {
+        initUIState()
+    }
+
+    private fun initUIState() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                horoscopeDetailViewModel.state.collect{
+                    when(it){
+                        is HoroscopeDetailState.Error -> errorState()
+                        HoroscopeDetailState.Loading -> loadingState()
+                        is HoroscopeDetailState.Success -> successState()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun successState() {
+        TODO("Not yet implemented")
+    }
+
+    private fun loadingState() {
+        binding.pbDetail.isVisible = true
+    }
+
+    private fun errorState() {
+        TODO("Not yet implemented")
+    }
+
 }
