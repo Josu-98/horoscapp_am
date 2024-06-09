@@ -39,6 +39,7 @@ class HoroscopeDetailActivity : AppCompatActivity() {
             insets
         }
 
+        horoscopeDetailViewModel.getHoroscope(args.horoscopeType.name)
         initUI()
 
     }
@@ -62,7 +63,7 @@ class HoroscopeDetailActivity : AppCompatActivity() {
     }
 
     private fun successState() {
-        TODO("Not yet implemented")
+        binding.pbDetail.isVisible = true
     }
 
     private fun loadingState() {
@@ -70,7 +71,7 @@ class HoroscopeDetailActivity : AppCompatActivity() {
     }
 
     private fun errorState() {
-        TODO("Not yet implemented")
+        binding.pbDetail.isVisible = true
     }
 
 }

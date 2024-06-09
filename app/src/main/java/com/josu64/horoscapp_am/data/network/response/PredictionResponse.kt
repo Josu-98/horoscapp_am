@@ -1,6 +1,7 @@
 package com.josu64.horoscapp_am.data.network.response
 
 import com.google.gson.annotations.SerializedName
+import com.josu64.horoscapp_am.domain.model.PredictionModel
 
 /*{
     "date": "2020-01-01",
@@ -16,7 +17,15 @@ import com.google.gson.annotations.SerializedName
 data class PredictionResponse(
     @SerializedName("date") val date: String,
     @SerializedName("horoscope") val horoscope: String,
-    @SerializedName("icon") val icon: String,
+    @SerializedName("sign") val sign: String,
 
     //We can avoid the fields we won't use
-)
+) {
+    //This function transforms the object from a data layer response to a model domain model
+    fun toDomain(): PredictionModel {
+        return PredictionModel(
+            horoscope = horoscope,
+            sign = sign
+        )
+    }
+}
