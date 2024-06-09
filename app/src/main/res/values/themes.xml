@@ -2,7 +2,25 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Horoscapp_am" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/secondary</item>
+        <item name="android:fontFamily">@font/supreme_regular</item>
     </style>
 
     <style name="Theme.Horoscapp_am" parent="Base.Theme.Horoscapp_am" />
+    
+    <style name="Title">
+        <item name="android:fontFamily">@font/melodrama_bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/secondary</item>
+    </style>
+
+    <style name="Body" parent="Title">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:fontFamily">@font/supreme_regular</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
 </resources>
