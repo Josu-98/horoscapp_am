@@ -6,6 +6,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.NavArgs
+import androidx.navigation.navArgs
 import com.josu64.horoscapp_am.R
 import com.josu64.horoscapp_am.databinding.ActivityHoroscopeDetailBinding
 import com.josu64.horoscapp_am.ui.horoscope.HoroscopeViewModel
@@ -16,6 +18,8 @@ class HoroscopeDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHoroscopeDetailBinding
     private val horoscopeDetailViewModel: HoroscopeDetailViewModel by viewModels()
+    //Retrieve horoscope type
+    private val args:HoroscopeDetailActivityArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,5 +32,8 @@ class HoroscopeDetailActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        args.horoscopeType
+
     }
 }
