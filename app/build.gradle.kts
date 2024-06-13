@@ -70,13 +70,13 @@ dependencies {
     // https://mvnrepository.com/artifact/androidx.camera/camera-core
     implementation("androidx.camera:camera-core:$camVersion")
     // https://mvnrepository.com/artifact/androidx.camera/camera-camera2
-    runtimeOnly("androidx.camera:camera-camera2:$camVersion")
+    implementation("androidx.camera:camera-camera2:$camVersion")
     // https://mvnrepository.com/artifact/androidx.camera/camera-lifecycle
-    runtimeOnly("androidx.camera:camera-lifecycle:$camVersion")
+    implementation("androidx.camera:camera-lifecycle:$camVersion")
     // https://mvnrepository.com/artifact/androidx.camera/camera-view
-    runtimeOnly("androidx.camera:camera-view:$camVersion")
+    implementation("androidx.camera:camera-view:$camVersion")
     // https://mvnrepository.com/artifact/androidx.camera/camera-extensions
-    runtimeOnly("androidx.camera:camera-extensions:$camVersion")
+    implementation("androidx.camera:camera-extensions:$camVersion")
 
 
 
