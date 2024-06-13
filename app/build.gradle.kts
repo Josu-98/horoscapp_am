@@ -64,6 +64,9 @@ android {
 
 dependencies {
 
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     val camVersion: String = "1.3.3"
 
     //AndroidX Camera
@@ -108,6 +111,14 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    //Testing
+    // https://mvnrepository.com/artifact/io.kotlintest/kotlintest-runner-junit5
+    testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
+    // https://mvnrepository.com/artifact/io.mockk/mockk
+    testImplementation("io.mockk:mockk:1.13.11")
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
